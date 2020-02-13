@@ -226,7 +226,6 @@ public class EvaluationService {
 	 * @return
 	 */
 	public Map<String, Integer> wordCount(String string) {
-		// TODO Write an implementation for this method declaration
 		Map<String, Integer> wordCount = new java.util.HashMap<>();
 		String temp[] = string.split("[ ,\n]");
 		int count;
@@ -287,8 +286,45 @@ public class EvaluationService {
 		public int indexOf(T t) {
 			// TODO Write an implementation for this method declaration
 			int high = sortedList.size()-1, low = 0, mid;
-			int test;
-			while (low <= high) {
+			int testInt;
+			String testString;
+			
+			if (sortedList.get(0).getClass().getName() == "java.lang.String") {
+				testString = (String) t;
+				while (low <= high) {
+					mid = (high + low) / 2;
+					if ((String) sortedList.get(mid) == testString) {
+						return mid;
+					}
+					else {
+						if (((String) sortedList.get(mid)).compareTo(testString) < 0) {
+							high = mid - 1;
+						}
+						else {
+							low = mid + 1;
+						}
+					}
+				}
+			}
+			else {
+				testInt = (Integer) t;
+				while (low <= high) {
+					mid = (high + low) / 2;
+					if ((Integer) sortedList.get(mid) == testInt) {
+						return mid;
+					}
+					else {
+						if ((Integer) sortedList.get(mid) < testInt) {
+							low = mid + 1;
+						}
+						else {
+							high = mid - 1;
+						}
+					}
+				}
+			}
+			
+			/**while (low <= high) {
 				mid = (high + low) / 2;
 				if (sortedList.get(mid) == t) {
 					return mid;
@@ -296,7 +332,8 @@ public class EvaluationService {
 				else {
 					high = mid - 1;
 				}
-			}
+			}*/
+			
 			return 0;
 		}
 
@@ -725,7 +762,6 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int getSumOfMultiples(int i, int[] set) {
-		// TODO Write an implementation for this method declaration
 		int sum = 0;
 		
 		for (int index = 1; index < i; index++) {
@@ -834,7 +870,6 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int solveWordProblem(String string) {
-		// TODO Write an implementation for this method declaration
 		String[] words = string.split(" ");
 		int num1 = Integer.decode(words[2]), num2 = Integer.decode(words[words.length-1].replace("?", "")), finish = 0;
 		
