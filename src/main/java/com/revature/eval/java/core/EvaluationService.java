@@ -495,23 +495,12 @@ public class EvaluationService {
 					}
 					for (int j = 0; j < alpha.length; j++) {
 						if (alpha[j] == Character.toLowerCase(string.charAt(i))) {
-							if (j + key >= alpha.length) {
-								if (isUpper) {
-									finish = finish + Character.toUpperCase(alpha[key+j-26]);
-									isUpper = false;
-								}
-								else {
-									finish = finish + alpha[key+j-26];
-								}
+							if (isUpper) {
+								finish = finish + Character.toUpperCase(alpha[(key+j)%26]);
+								isUpper = false;
 							}
 							else {
-								if (isUpper) {
-									finish = finish + Character.toUpperCase(alpha[key+j]);
-									isUpper = false;
-								}
-								else {
-									finish = finish + alpha[key+j];
-								}
+								finish = finish + alpha[(key+j)%26];
 							}
 						}
 					}
@@ -550,7 +539,7 @@ public class EvaluationService {
 		}
 		
 		while (count < i) {
-			for (int j = 2; j < checkPrime; j++) {
+			for (int j = 2; j < java.lang.Math.sqrt(checkPrime) + 1; j++) {
 				if (checkPrime % j == 0) {
 					notPrime = true;
 					break;
